@@ -1,5 +1,5 @@
 {
-    "name": "Free Throw",
+    "name": "Zack's Free Throw",
     "description": "",
     "dependencies": {
         "device": "*"
@@ -13,7 +13,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "1.2.6",
+        "target": "1.4.40",
         "targetId": "arcade"
     },
     "supportedTargets": [

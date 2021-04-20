@@ -2,29 +2,33 @@ namespace SpriteKind {
     export const Hoop = SpriteKind.create()
 }
 controller.anyButton.onEvent(ControllerButtonEvent.Pressed, function () {
-    basketball = sprites.createProjectileFromSprite(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . 4 4 4 f 4 4 4 . . . . . 
-        . . . 4 4 4 4 f 4 4 4 4 . . . . 
-        . . f 4 4 4 4 f 4 4 4 4 f . . . 
-        . 4 4 f 4 4 4 f 4 4 4 f 4 4 . . 
-        . 4 4 4 f 4 4 f 4 4 f 4 4 4 . . 
-        . 4 4 4 f 4 4 f 4 4 f 4 4 4 . . 
-        . f f f f f f f f f f f f f . . 
-        . 4 4 4 f 4 4 f 4 4 f 4 4 4 . . 
-        . 4 4 4 f 4 4 f 4 4 f 4 4 4 . . 
-        . 4 4 f 4 4 4 f 4 4 4 f 4 4 . . 
-        . . f 4 4 4 4 f 4 4 4 4 f . . . 
-        . . . 4 4 4 4 f 4 4 4 4 . . . . 
-        . . . . 4 4 4 f 4 4 4 . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, baller, 0, -100)
+    if (hasShot == false) {
+        basketball = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . 4 4 4 f 4 4 4 . . . . . 
+            . . . 4 4 4 4 f 4 4 4 4 . . . . 
+            . . f 4 4 4 4 f 4 4 4 4 f . . . 
+            . 4 4 f 4 4 4 f 4 4 4 f 4 4 . . 
+            . 4 4 4 f 4 4 f 4 4 f 4 4 4 . . 
+            . 4 4 4 f 4 4 f 4 4 f 4 4 4 . . 
+            . f f f f f f f f f f f f f . . 
+            . 4 4 4 f 4 4 f 4 4 f 4 4 4 . . 
+            . 4 4 4 f 4 4 f 4 4 f 4 4 4 . . 
+            . 4 4 f 4 4 4 f 4 4 4 f 4 4 . . 
+            . . f 4 4 4 4 f 4 4 4 4 f . . . 
+            . . . 4 4 4 4 f 4 4 4 4 . . . . 
+            . . . . 4 4 4 f 4 4 4 . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, baller, 0, -100)
+        hasShot = true
+    }
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Hoop, function (sprite, otherSprite) {
     game.over(true)
 })
 let basketball: Sprite = null
+let hasShot = false
 let baller: Sprite = null
 scene.setBackgroundImage(img`
     1111111111111211111111111111111111111111111111111111111111111112111111111111111111111111111111121111111111111111111111111111111111111111111111111112111111111111
@@ -188,3 +192,6 @@ let theHoop = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Hoop)
 theHoop.setPosition(80, 10)
+game.onUpdateInterval(2000, function () {
+    hasShot = false
+})
